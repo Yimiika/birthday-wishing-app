@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.form-container {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.input-group input:focus {
+  border-color: rgb(80, 10, 80);
+  outline: none;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: rgb(104, 25, 104);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: rgb(134, 36, 134);
+}
+
+.popup {
+  background-color: rgb(104, 25, 104);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup:not(.hidden) {
+  opacity: 1;
+}

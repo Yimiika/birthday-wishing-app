@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Reminder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <h2 class="title">Birthday Reminder</h2>
+
+        <form id="birthdayForm">
+          <div class="input-group">
+            <label for="username">Your Name</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Please enter name"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="email">Your Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Please enter email"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" id="dateOfBirth" required />
+          </div>
+
+          <button type="submit" class="submit-btn">Save Reminder</button>
+        </form>
+
+        <div id="popup" class="popup hidden"></div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("birthdayForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const email = document.getElementById("email").value;
+          const dateOfBirth = document.getElementById("dateOfBirth").value;
+
+          // Send data to the backend
+          fetch("http://localhost:5000/api/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username,
+              email,
+              dateOfBirth,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              showPopup(data.message);
+            })
+            .catch((err) => {
+              showPopup(`Failed to save reminder!: ${err}`);
+              console.error(err);
+            });
+
+          // Reset form after submission
+          document.getElementById("birthdayForm").reset();
+        });
+
+      function showPopup(message) {
+        const popup = document.getElementById("popup");
+        popup.textContent = message;
+        popup.classList.remove("hidden");
+        setTimeout(() => {
+          popup.classList.add("hidden");
+        }, 4000); // Hide after 4 seconds
+      }
+    </script>
+  </body>
+</html>
