@@ -15,5 +15,10 @@ app.use(express.json());
 app.use("/api", userRoutes);
 runBirthdayJob();
 
+app.get("/wake-up", (req, res) => {
+  console.log("Wake-up ping received");
+  res.send("Backend is awake!");
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
