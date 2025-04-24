@@ -17,7 +17,7 @@ runBirthdayJob();
 
 app.get("/wake-up", (req, res) => {
   console.log("Wake-up ping received");
-  res.send("Backend is awake!");
+  res.status(200).send("Awake!");
 });
 
 const PORT = process.env.PORT || 5000;
